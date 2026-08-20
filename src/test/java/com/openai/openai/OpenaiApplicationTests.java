@@ -2,10 +2,6 @@ package com.openai.openai;
 
 import com.openai.openai.Service.ChatService;
 import com.openai.openai.Service.Reader;
-import com.openai.openai.helper.Helper;
-import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.api.Test;
-import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
