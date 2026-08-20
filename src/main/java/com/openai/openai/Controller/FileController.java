@@ -19,8 +19,9 @@ public class FileController {
 //    add pdf document.
 
     @PostMapping("/add")
-    public ResponseEntity<String> addPdfFile(@RequestParam("file") MultipartFile file){
-        this.chatService.addPdf(file);
+    public ResponseEntity<String> addPdfFile(@RequestParam("file") MultipartFile file,
+                                             @RequestParam  String userId){
+        this.chatService.addPdf(file,userId);
         return ResponseEntity.ok("File Uploaded successfully");
     }
 

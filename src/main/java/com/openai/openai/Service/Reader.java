@@ -10,6 +10,6 @@ public interface Reader {
     public List<Document> readPDF(MultipartFile file);
 
 
-    List<Document> readPdfFromS3(String s3Key,String fileName);
+    List<Document> readPdfFromS3(String s3Key,String userId,String fileName);
 
 }

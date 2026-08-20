@@ -19,8 +19,8 @@ public class ChatController {
 
 
     @GetMapping("/query")
-    public String advancedRag(@RequestParam String message){
-        return this.chatService.retreiveDataFromVectorDB(message);
+    public String advancedRag(@RequestParam String message, String userId){
+        return this.chatService.retreiveDataFromVectorDB(message, userId);
     }
 
 

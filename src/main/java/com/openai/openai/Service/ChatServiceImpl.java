@@ -12,6 +12,7 @@ import org.springframework.ai.rag.preretrieval.query.transformation.TranslationQ
 import org.springframework.ai.rag.retrieval.join.ConcatenationDocumentJoiner;
 import org.springframework.ai.rag.retrieval.search.VectorStoreDocumentRetriever;
 import org.springframework.ai.vectorstore.VectorStore;
+import org.springframework.ai.vectorstore.filter.FilterExpressionBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -50,17 +51,17 @@ public class ChatServiceImpl implements ChatService {
 //    }
 
     @Override
-    public void addPdf(MultipartFile file) {
+    public void addPdf(MultipartFile file, String userId) {
 
         String s3Key =s3Service.uploadFile(file);
 
-        List<Document> list = this.reader.readPdfFromS3(s3Key,file.getOriginalFilename());
+        List<Document> list = this.reader.readPdfFromS3(s3Key,userId,file.getOriginalFilename());
         vectorStore.add(list);
 
     }
 
     @Override
-    public String retreiveDataFromVectorDB(String message) {
+    public String retreiveDataFromVectorDB(String message, String userId) {
 
 
 //      1.  preprocess query(pre-retrieval)
@@ -82,8 +83,11 @@ public class ChatServiceImpl implements ChatService {
         vectorStore(vectorStore).
         topK(3).
         similarityThreshold(0.4).
+        filterExpression(new FilterExpressionBuilder().
+                eq("userId",userId).
+                build()).
         build()).
-
+//eq("userId","userId")  first userId is the metadata that we save while reading pdf and second userId is our userId
 //       2.2  combine documents
         documentJoiner(new ConcatenationDocumentJoiner()).
 

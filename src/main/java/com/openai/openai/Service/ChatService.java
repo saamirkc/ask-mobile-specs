@@ -3,9 +3,9 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ChatService {
 
 
-    void addPdf(MultipartFile file);
+    void addPdf(MultipartFile file, String userId);
 
-    String retreiveDataFromVectorDB(String message);
+    String retreiveDataFromVectorDB(String message, String userId);
 
 }
 

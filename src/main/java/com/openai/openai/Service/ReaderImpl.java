@@ -45,7 +45,7 @@ public class ReaderImpl implements Reader {
     }
 
     @Override
-    public List<Document> readPdfFromS3(String s3Key, String fileName) {
+    public List<Document> readPdfFromS3(String s3Key,String userId,String fileName) {
 
 
         try(InputStream is= s3Service.downloadFile(s3Key)){
@@ -69,16 +69,20 @@ public class ReaderImpl implements Reader {
                             .build()
             );
 
-            return pagePdfDocumentReader.read();
-//            List<Document> documents = pagePdfDocumentReader.read().stream()
-//                    .map(doc -> doc.mutate()
-//                            .metadata("userId", userId)
-//                            .metadata("fileName", fileName)
-//                            .metadata("s3Key", s3Key)
-//                            .build())
-//                    .toList();
+//            return pagePdfDocumentReader.read();
+            List<Document> documents = pagePdfDocumentReader.read().stream()
 
-//            return documents;
+                    // Attach userId, fileName, and s3Key as metadata to every extracted page.
+                    // This permanently records which user owns each chunk in the vector database
+
+                    .map(doc -> doc.mutate()
+                            .metadata("userId", userId)
+                            .metadata("fileName", fileName)
+                            .metadata("s3Key", s3Key)
+                            .build())
+                    .toList();
+
+            return documents;
         }
         catch (IOException e){
             throw new RuntimeException("Failed to read pdf from storage",e);
