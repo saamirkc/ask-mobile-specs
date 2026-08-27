@@ -8,8 +8,8 @@
 		<version>3.4.12</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.openai</groupId>
-	<artifactId>openai</artifactId>
+	<groupId>com</groupId>
+	<artifactId>gemini</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>
@@ -31,18 +31,12 @@
 		<spring-ai.version>1.1.0</spring-ai.version>
 	</properties>
 	<dependencies>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-data-jpa</artifactId>-->
-<!--		</dependency>-->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.ai</groupId>-->
-<!--			<artifactId>spring-ai-starter-model-openai</artifactId>-->
-<!--		</dependency>-->
+
 
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
@@ -59,30 +53,27 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.ai</groupId>-->
-<!--			<artifactId>spring-ai-starter-model-chat-memory-repository-jdbc</artifactId>-->
-<!--		</dependency>-->
 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>
 		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-		</dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-starter-vector-store-pgvector</artifactId>
+			<artifactId>spring-ai-starter-vector-store-mariadb</artifactId>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
@@ -91,9 +82,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-
-
-<!--		RAG-->
 
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
@@ -111,12 +99,6 @@
 			<artifactId>spring-ai-pdf-document-reader</artifactId>
 		</dependency>
 
-
-		<dependency>
-			<groupId>software.amazon.awssdk</groupId>
-			<artifactId>s3</artifactId>
-			<version>2.28.11</version>
-		</dependency>
 
 	</dependencies>
 	<dependencyManagement>
